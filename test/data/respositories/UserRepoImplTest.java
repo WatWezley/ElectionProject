@@ -83,6 +83,7 @@ class UserRepoImplTest {
         User savedUser2 =  userRepoImpl.save(user);
         assertEquals("favchi@regnos.com", savedUser2.getUserName());
         List<User> users2 = List.of(new User[]{savedUser, savedUser2});
+        System.out.println(users2);
         assertEquals(users2,userRepoImpl.findAll());;
         assertEquals(2, userRepoImpl.count());}
 

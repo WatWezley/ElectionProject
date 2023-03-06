@@ -6,7 +6,7 @@ public class MailBox {
 
     private String mailName;
 
-    ArrayList<ArrayList<Object>> mailBox;
+    public ArrayList<ArrayList<Object>> mailBox;
 
 
 

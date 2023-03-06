@@ -1,6 +1,8 @@
 package data.models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Mail {
     private String sender;
@@ -11,7 +13,8 @@ public class Mail {
 
     private String body;
 
-    private LocalDateTime date;
+    LocalDate date = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
 
     public String getSender() {
         return sender;
@@ -45,22 +48,21 @@ public class Mail {
         this.body = body;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
 
-    @Override
-    public String toString() {
-        return "Mail{" +
-                "sender='" + sender + '\'' +
-                ", recipient='" + recipient + '\'' +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", date=" + date +
-                '}';
+
+
+        @Override
+        public String toString() {
+            return String.format("""
+                        Date: %s
+                        Sender: %s
+                        Recipient: %s
+                        Title : %s
+                        Body: %s""",
+                    getDate(), getSender(), getRecipient(), getTitle(), getBody());
     }
 }

@@ -1,5 +1,6 @@
 package data.respositories;
 
+import data.models.Mail;
 import data.models.MailBox;
 import data.models.User;
 
@@ -8,8 +9,10 @@ import java.util.List;
 
 public class MailBoxRepoImpl implements MailBoxRepo{
 
-    List<MailBox>mailBoxes = new ArrayList<>();
+    static List<MailBox>mailBoxes = new ArrayList<>();
     static User user = new User();
+
+
 
     int count = 0;
     @Override
@@ -25,6 +28,7 @@ public class MailBoxRepoImpl implements MailBoxRepo{
         for(var mails: mailBoxes){
             if(mails.getMailName().equalsIgnoreCase(mailName)){
                 return mails;
+
             }
         }
         return null;

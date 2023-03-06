@@ -2,23 +2,25 @@ package data.respositories;
 
 import data.models.Mail;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface MailRepo {
 
-    Mail save(Mail mail, String sender, String recipient);
+    Mail save(Mail mail);
 
-    Mail findByRecipient(String recipient,String mailName, Mail mail);
-
-    Mail findBySender(String sender, String mailName, Mail mail);
-
-    List<Mail> findAll();
-
-    void deleteBySender(String sender);
-
-    void deleteBtRecipient(String recipient);
+    Mail findByRecipient(String MailName,String recipient, Mail mail);
 
 
+    List<Mail> findBySender(String mailName, String sender, Mail mail);
 
-    void deleteAll();
+    ArrayList<ArrayList<Object>> findAll(String mailName);
+
+    void deleteBySender(String mailName, String sender);
+
+    void deleteBtRecipient(String mailName, String recipient);
+
+
+
+    void deleteAll(String mailName);
 }
