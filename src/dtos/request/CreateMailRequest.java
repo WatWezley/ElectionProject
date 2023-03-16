@@ -1,11 +1,14 @@
-package data.models;
+package dtos.request;
+
+import data.models.Mail;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Mail {
+public class CreateMailRequest extends Mail {
 
     private int id;
+
     private String sender;
 
     private String recipient;
@@ -57,23 +60,10 @@ public class Mail {
     }
 
     public LocalDate getDate() {
-        return this.date;
+        return date;
     }
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    @Override
-        public String toString() {
-            return String.format("""
-                        Id: %s
-                        Date: %s
-                        Sender: %s
-                        Recipient: %s
-                        Title : %s
-                        Body: %s
-                        """,
-                        getId(), getDate(), getSender(), getRecipient(), getTitle(), getBody()) ;
     }
 }

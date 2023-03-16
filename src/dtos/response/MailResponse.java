@@ -1,11 +1,12 @@
-package data.models;
+package dtos.response;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Mail {
+public class MailResponse {
 
     private int id;
+
     private String sender;
 
     private String recipient;
@@ -15,6 +16,7 @@ public class Mail {
     private String body;
     private LocalDate date = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+
 
     public int getId() {
         return id;
@@ -57,7 +59,7 @@ public class Mail {
     }
 
     public LocalDate getDate() {
-        return this.date;
+        return date;
     }
 
     public void setDate(LocalDate date) {
@@ -65,15 +67,15 @@ public class Mail {
     }
 
     @Override
-        public String toString() {
-            return String.format("""
-                        Id: %s
-                        Date: %s
-                        Sender: %s
-                        Recipient: %s
-                        Title : %s
-                        Body: %s
-                        """,
-                        getId(), getDate(), getSender(), getRecipient(), getTitle(), getBody()) ;
+    public String toString() {
+        return String.format("""
+                Id : %s
+                Date : %s
+                Sender : %s
+                Recipient : %s
+                Title : %s
+                Body: %s
+                """,getId(),getDate(),getSender(),getRecipient(),getTitle(),getBody());
+
     }
 }

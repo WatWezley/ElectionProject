@@ -8,6 +8,8 @@ public interface UserRepo {
 
     User save(User user);
 
+    User findById(int id);
+
     User findByUserName(String userName);
 
     long count();

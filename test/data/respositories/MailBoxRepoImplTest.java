@@ -19,8 +19,9 @@ class MailBoxRepoImplTest {
     @BeforeEach
     void setUp(){
         mailBox=new MailBox();
-        mailBox.setMailName("ugokarl@regnos.com");
-        mailBox.setMailBox();
+        mailBox.setUserName("ugokarl@regnos.com");
+        mailBox.setInbox(new ArrayList<>());
+        mailBox.setOutbox(new ArrayList<>());
         mailBoxRepoImpl= new MailBoxRepoImpl();
 
     }
@@ -34,9 +35,8 @@ class MailBoxRepoImplTest {
     @Test
     public void saveOneMailBox_FindByMailNameTest() {
         MailBox mailBox1 = mailBoxRepoImpl.save(mailBox);
-        MailBox mailBox2 = mailBoxRepoImpl.findByMailName("ugokarl@regnos.com");
-        System.out.println(mailBox2.toString());
-        assertEquals(mailBox1, mailBox2);
+        MailBox foundBox = mailBoxRepoImpl.findByMailName("ugokarl@regnos.com");
+        assertEquals(mailBox1,foundBox);
     }
 
 
@@ -44,7 +44,9 @@ class MailBoxRepoImplTest {
     public void saveTwoMailBoxes_findAll(){
         MailBox mailBox1= mailBoxRepoImpl.save(mailBox);
         mailBox=new MailBox();
-        mailBox.setMailName("favchi@regnos.com");
+        mailBox.setUserName("ugokarl@regnos.com");
+        mailBox.setInbox(new ArrayList<>());
+        mailBox.setOutbox(new ArrayList<>());
         MailBox mailBox2= mailBoxRepoImpl.save(mailBox);
         List<MailBox> mailBoxList = List.of(new MailBox[]{mailBox1, mailBox2});
         assertEquals(2,mailBoxRepoImpl.count());
@@ -55,27 +57,35 @@ class MailBoxRepoImplTest {
     public void saveTwoMailBoxes_DeleteByMailName(){
         MailBox mailBox1= mailBoxRepoImpl.save(mailBox);
         mailBox=new MailBox();
-        mailBox.setMailName("favchi@regnos.com");
+        mailBox.setUserName("ugokarl@regnos.com");
+        mailBox.setInbox(new ArrayList<>());
+        mailBox.setOutbox(new ArrayList<>());
         MailBox mailBox2= mailBoxRepoImpl.save(mailBox);
         mailBox=new MailBox();
-        mailBox.setMailName("barachi@regnos.com");
+        mailBox.setUserName("favchi@regnos.com");
+        mailBox.setInbox(new ArrayList<>());
+        mailBox.setOutbox(new ArrayList<>());
         MailBox mailBox3= mailBoxRepoImpl.save(mailBox);
         List<MailBox> mailBoxList = List.of(new MailBox[]{mailBox1, mailBox2, mailBox3});
         assertEquals(mailBoxList,mailBoxRepoImpl.findAll());
         assertEquals(3,mailBoxRepoImpl.count());
-        mailBoxRepoImpl.delete("favchi@regnos.com");
-        List<MailBox> mailBoxList1 = List.of(new MailBox[]{mailBox1, mailBox3});
+        mailBoxRepoImpl.delete(1);
+        List<MailBox> mailBoxList1 = List.of(new MailBox[]{mailBox2, mailBox3});
         assertEquals(2,mailBoxRepoImpl.count());
         assertEquals(mailBoxList1,mailBoxRepoImpl.findAll());
     }
     @Test
     public void saveThreeMailBox_DeleteAll(){
         MailBox mailBox1= mailBoxRepoImpl.save(mailBox);
-        mailBox=new MailBox();
-        mailBox.setMailName("favchi@regnos.com");
+        mailBox = new MailBox();
+        mailBox.setUserName("ugokarl@regnos.com");
+        mailBox.setInbox(new ArrayList<>());
+        mailBox.setOutbox(new ArrayList<>());
         MailBox mailBox2= mailBoxRepoImpl.save(mailBox);
-        mailBox=new MailBox();
-        mailBox.setMailName("barachi@regnos.com");
+        mailBox = new MailBox();
+        mailBox.setUserName("favchi@regnos.com");
+        mailBox.setInbox(new ArrayList<>());
+        mailBox.setOutbox(new ArrayList<>());
         MailBox mailBox3= mailBoxRepoImpl.save(mailBox);
         List<MailBox> mailBoxList = List.of(new MailBox[]{mailBox1, mailBox2, mailBox3});
         assertEquals(mailBoxList,mailBoxRepoImpl.findAll());

@@ -1,36 +1,54 @@
 package data.respositories;
 
-import data.models.Mail;
+
 import data.models.MailBox;
-import data.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MailBoxRepoImpl implements MailBoxRepo{
 
-    static List<MailBox>mailBoxes = new ArrayList<>();
-    static User user = new User();
-
-
+     private static List<MailBox> mailBoxes = new ArrayList<>();
 
     int count = 0;
+
     @Override
     public MailBox save(MailBox mailBox) {
-        mailBox.setMailBox();
-        mailBoxes.add(mailBox);
-        count++;
-        return mailBox;
+        boolean userHasNotBeenSaved = mailBox.getId() == 0;
+        if (userHasNotBeenSaved) {
+            mailBox.setId(generateId());
+            mailBoxes.add(mailBox);
+            count++;
+            return mailBox;
+
+        }
+        return null;
+    }
+
+    private int generateId() {
+        return count+1;
+    }
+
+
+
+    @Override
+    public MailBox findById(int id) {
+        for(MailBox mailBox2: mailBoxes){
+            if(mailBox2.getId()==id){
+                return mailBox2;
+            }
+        }
+        return null;
     }
 
     @Override
-    public MailBox findByMailName(String mailName) {
-        for(var mails: mailBoxes){
-            if(mails.getMailName().equalsIgnoreCase(mailName)){
-                return mails;
-
+    public MailBox findByMailName(String userName) {
+        for(MailBox mailBox2: mailBoxes){
+            if(mailBox2.getMailBoxName().equalsIgnoreCase(userName)){
+              return mailBox2;
             }
         }
+
         return null;
     }
 
@@ -45,15 +63,24 @@ public class MailBoxRepoImpl implements MailBoxRepo{
     }
 
     @Override
-    public void delete(String mailName) {
-        mailBoxes.removeIf(mails -> mails.getMailName().equalsIgnoreCase(mailName));
-        count--;
+    public void delete(int id) {
+        List<MailBox> toRemove = new ArrayList<>();
+        for (MailBox mailBox2 : mailBoxes) {
+            if (mailBox2.getId() == id) {
+                toRemove.add(mailBox2);
+                count--;
+            }
+
+        }mailBoxes.removeAll(toRemove);
+
+
     }
 
     @Override
     public void deleteAll() {
         mailBoxes.clear();
         count=0;
+
 
     }
 }

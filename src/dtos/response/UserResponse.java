@@ -2,12 +2,18 @@ package dtos.response;
 
 public class UserResponse {
     private String firstName;
-
     private String lastName;
     private String userName;
 
-    private String password;
+    private int Id;
 
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -33,22 +39,15 @@ public class UserResponse {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Override
     public String toString() {
         return String.format("""
+                Id : %s
                 FirstName: %s
                 LastName: %s
                 UserName: %s
-                Password: %s
-                """,getFirstName(),getLastName(),getUserName(),getPassword());
+                """,getId(),getFirstName(), getLastName(),getUserName());
 
     }
 }

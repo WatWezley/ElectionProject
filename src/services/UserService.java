@@ -9,10 +9,16 @@ import java.util.List;
 public interface UserService {
     User register(CreateUserRequest userRequest);
 
+    String isLoginCorrect(String userName, String password);
+
     UserResponse findByUserName(String userName);
 
+    long count();
 
-    List<UserResponse> delete(String userName);
+    List <UserResponse> findAll();
 
-    List<UserResponse> deleteAll();
+
+    String delete(String userName);
+
+    String deleteAll();
 }

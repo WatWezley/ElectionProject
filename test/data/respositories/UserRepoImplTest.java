@@ -33,11 +33,11 @@ class UserRepoImplTest {
     @Test
     public void saveOneUser_idOfUserIsOneTest(){
         User savedUser =  userRepoImpl.save(user);
-        assertEquals("ugokarl@regnos.com", savedUser.getUserName());
+        assertEquals(1, savedUser.getId());
     }
 
     @Test
-    public void saveTwoUsersWithSameId_countIsOneTest(){
+    public void saveTwoUsers_countTest(){
         User savedUser =  userRepoImpl.save(user);
         assertEquals(1, userRepoImpl.count());
         user = new User();
@@ -69,7 +69,7 @@ class UserRepoImplTest {
         user.setPassword("2222");
         User savedUser2 =  userRepoImpl.save(user);
         assertEquals(2, userRepoImpl.count());
-        userRepoImpl.delete("ugokarl@regnos.com");
+        userRepoImpl.delete("favchi@regnos.com");
         assertEquals(1, userRepoImpl.count());
     }
     @Test
@@ -83,7 +83,6 @@ class UserRepoImplTest {
         User savedUser2 =  userRepoImpl.save(user);
         assertEquals("favchi@regnos.com", savedUser2.getUserName());
         List<User> users2 = List.of(new User[]{savedUser, savedUser2});
-        System.out.println(users2);
         assertEquals(users2,userRepoImpl.findAll());;
         assertEquals(2, userRepoImpl.count());}
 

@@ -1,41 +1,58 @@
 package data.models;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MailBox {
 
-    private String mailName;
+    private int id;
 
-    public ArrayList<ArrayList<Object>> mailBox;
+    private String userName;
 
+    private List<Mail> inbox;
 
+    private List<Mail> outbox;
 
-    public String getMailName() {
-        return mailName;
+    public int getId() {
+        return id;
     }
 
-    public void setMailName(String mailName) {
-        this.mailName = mailName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public ArrayList<ArrayList<Object>> getMailBox() {
-        return mailBox;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setMailBox() {
-        mailBox = new ArrayList<>();
-        mailBox.add(new ArrayList<>());
-        mailBox.add(new ArrayList<>());
-        mailBox.add(new ArrayList<>());
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
+    public List<Mail> getInbox() {
+        return inbox;
+    }
 
+    public void setInbox(List<Mail> inbox) {
+        this.inbox = inbox;
+    }
+
+    public List<Mail> getOutbox() {
+        return outbox;
+    }
+
+    public void setOutbox(List<Mail> outbox) {
+        this.outbox = outbox;
+    }
 
     @Override
     public String toString() {
         return "MailBox{" +
-                "mailName='" + mailName + '\'' +
-                ", mailBox=" + mailBox +
+                "id=" + id +
+                ", username='" + userName + '\'' +
+                ", inbox=" + inbox +
+                ", outbox=" + outbox +
                 '}';
     }
 }
+
+

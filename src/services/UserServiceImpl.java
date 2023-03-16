@@ -7,11 +7,12 @@ import dtos.request.CreateUserRequest;
 import dtos.response.UserResponse;
 import utils.Mappers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-    private static UserRepo userRepo = new UserRepoImpl();
+    private static final UserRepo userRepo = new UserRepoImpl();
 
 
     @Override
@@ -20,12 +21,23 @@ public class UserServiceImpl implements UserService {
         return userRepo.save(Mappers.map(userRequest));
     }
 
+    @Override
+    public String isLoginCorrect(String userName, String password) {
+        if (!loginValidation(userName, password))throw new IllegalArgumentException("Invalid Credentials");
+        return "Login Successfully";
+    }
+
+
+    public Boolean loginValidation(String userName, String password) {
+        User user = userRepo.findByUserName(userName);
+        return user.getUserName().equalsIgnoreCase(userName) && (user.getPassword().equalsIgnoreCase(password));
+    }
+
 
     private boolean userExist(String userName) {
         User found = userRepo.findByUserName(userName);
-        if (found != null) return true;
-        return false;
-        }
+        return found != null;
+    }
 
 
     @Override
@@ -38,15 +50,31 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public List<UserResponse> findAll() {
+        List<UserResponse> responseUser = new ArrayList<>();
+        List<User> allUser = userRepo.findAll();
+        for (User foundUser : allUser) {
+            UserResponse response = new UserResponse();
+            Mappers.map(foundUser, response);
+            responseUser.add(response);
+        }return responseUser;
+    }
+
+    public long count(){
+        return  userRepo.count();
+    }
+
 
     @Override
-    public List<UserResponse> delete(String userName) {
+    public String delete(String userName) {
         userRepo.delete(userName);
-        return null;
+        return "Successfully Deleted";
     }
 
     @Override
-    public List<UserResponse> deleteAll() {
-        return null;
+    public String deleteAll() {
+        userRepo.deleteAll();
+        return "User Records Empty";
     }
 }
