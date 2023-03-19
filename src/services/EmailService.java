@@ -17,19 +17,23 @@ public interface EmailService {
 
  MailBox activateMailBox(CreateMailBoxRequest mailBoxRequest);
 
- String loginUser(String userName,String Password);
+ User loginUser(String userName,String Password);
 
 String sendMail(CreateMailRequest mailRequest);
 
- List<MailResponse> viewInboxMails(String mailName);
+ List<MailResponse> viewInboxMails(String userName, MailResponse response);
 
- List<MailResponse> viewOutboxMails(String mailName);
+ List<MailResponse> viewOutboxMails(String userName, MailResponse response);
 
- MailResponse viewBySender(String mailName,String userName);
+ List <MailResponse> viewBySender(String userName,String sender, MailResponse mailResponse);
 
- MailResponse viewByRecipient(String mailName,String userName);
+ List <MailResponse> viewByRecipient(String userName,String recipient, MailResponse mailResponse);
 
- String deleteBySenderOrRecipient(String MailName, String sender);
+ String delete(int id);
+
+ String deleteBySender(String userName,String sender);
+
+ String deleteByRecipient(String userName, String recipient);
 
 
 

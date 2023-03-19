@@ -33,25 +33,22 @@ public class Mappers {
 
     public static MailBox map(CreateMailBoxRequest mailBoxRequest) {
         MailBox mailBox = new MailBox();
-        mailBox.setMailBoxName(mailBoxRequest.getMailBoxName());
-        mailBox.setInbox(mailBoxRequest.getInbox());
-        mailBox.setOutbox(mailBoxRequest.getOutbox());
+        mailBox.setUserName(mailBoxRequest.getUserName());
         return mailBox;
     }
 
 
     public static MailBoxResponse map(MailBox foundMail, MailBoxResponse response) {
         response.setId(foundMail.getId());
-        response.setMailBoxName(foundMail.getMailBoxName());
-        response.setInBoxMails((ArrayList<Mail>) foundMail.getInbox());
-        response.setOutBoxMails((ArrayList<Mail>) foundMail.getOutbox());
+        response.setUserName(foundMail.getUserName());
+        response.setInbox((ArrayList<Mail>) foundMail.getInbox());
+        response.setOutbox((ArrayList<Mail>) foundMail.getOutbox());
         return response;
     }
 
 
     public static Mail map(CreateMailRequest mailRequest) {
         Mail mail = new Mail();
-        mail.setId(mailRequest.getId());
         mail.setDate(mailRequest.getDate());
         mail.setSender(mailRequest.getSender());
         mail.setRecipient(mailRequest.getRecipient());
@@ -61,7 +58,6 @@ public class Mappers {
     }
 
     public static MailResponse map(Mail mail,MailResponse mailResponse){
-        mailResponse.setId(mail.getId());
         mailResponse.setDate(mail.getDate());
         mailResponse.setSender(mail.getSender());
         mailResponse.setRecipient(mail.getRecipient());

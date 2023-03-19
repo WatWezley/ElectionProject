@@ -11,69 +11,71 @@ import dtos.response.MailResponse;
 
 import java.util.List;
 
-public class EmailServiceImpl implements  EmailService{
+public class EmailServiceImpl implements  EmailService {
 
     private static UserServiceImpl userService = new UserServiceImpl();
 
 
-    private static MailBoxServiceImpl mailBoxService= new MailBoxServiceImpl();
-
+    private static MailBoxServiceImpl mailBoxService = new MailBoxServiceImpl();
 
 
     @Override
     public User registration(CreateUserRequest userRequest) {
-        User newUser = userService.register(userRequest);
-        return newUser;
+        return userService.register(userRequest);
     }
 
     @Override
     public MailBox activateMailBox(CreateMailBoxRequest mailBoxRequest) {
-        MailBox newMailBox = mailBoxService.createMailBox(mailBoxRequest);
-        return newMailBox;
+        return mailBoxService.createMailBox(mailBoxRequest);
     }
 
     @Override
-    public String loginUser(String userName, String password) {
-        return userService.isLoginCorrect(userName,password);
+    public User loginUser(String userName, String password) {
+        return userService.isLoginCorrect(userName, password);
 
     }
 
     @Override
     public String sendMail(CreateMailRequest mailRequest) {
-
-        return null;
+        return mailBoxService.sendMails(mailRequest);
     }
 
-
-
-
-
     @Override
-    public List<MailResponse> viewInboxMails( String mailName) {
-        return null;
+    public List<MailResponse> viewInboxMails(String userName, MailResponse response) {
+        return mailBoxService.findInbox(userName, response);
     }
 
 
     @Override
-    public List<MailResponse> viewOutboxMails( String mailName) {
-        return null;
+    public List<MailResponse> viewOutboxMails(String userName, MailResponse response) {
+        return mailBoxService.findOutbox(userName, response);
     }
 
     @Override
-    public MailResponse viewBySender(String mailName, String userName) {
-
-        return null;
+    public List<MailResponse> viewBySender(String userName, String sender, MailResponse mailResponse) {
+        return mailBoxService.findSender(userName, sender, mailResponse);
     }
 
     @Override
-    public MailResponse viewByRecipient(String mailName, String userName) {
-        return null;
+    public List<MailResponse> viewByRecipient(String userName, String recipient, MailResponse mailResponse) {
+        return mailBoxService.findRecipient(userName, recipient, mailResponse);
     }
-
 
     @Override
-    public String deleteBySenderOrRecipient(String mailName, String userName) {
-        return null;
+    public String delete(int id) {
+        return mailBoxService.delete(id);
     }
+
+    @Override
+    public String deleteBySender(String userName, String sender) {
+        return mailBoxService.deleteBySender(userName,sender);
+    }
+
+    @Override
+    public String deleteByRecipient(String userName, String recipient) {
+        return mailBoxService.deleteByRecipient(userName,recipient);
+    }
+
 
 }
+

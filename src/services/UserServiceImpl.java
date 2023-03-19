@@ -22,15 +22,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String isLoginCorrect(String userName, String password) {
-        if (!loginValidation(userName, password))throw new IllegalArgumentException("Invalid Credentials");
-        return "Login Successfully";
+    public User isLoginCorrect(String userName, String password) {
+        User user = userRepo.findByUserName(userName);
+        System.out.println(user.getPassword());
+        if(user.getPassword() == password) {return user;}
+        throw new IllegalArgumentException("Invalid Credentials");
+
     }
 
 
     public Boolean loginValidation(String userName, String password) {
         User user = userRepo.findByUserName(userName);
-        return user.getUserName().equalsIgnoreCase(userName) && (user.getPassword().equalsIgnoreCase(password));
+        if(user.getPassword().equals(password)) {
+            return true;
+        }return false;
     }
 
 

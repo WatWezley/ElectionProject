@@ -8,9 +8,9 @@ public class CreateMailBoxRequest {
 
     private String userName;
 
-    private final ArrayList<Mail> inbox = new ArrayList<>();
+    private static ArrayList<Mail> inbox = new ArrayList<>();
 
-    private final ArrayList<Mail> outbox = new ArrayList<>();
+    private static ArrayList<Mail> outbox = new ArrayList<>();
 
 
 

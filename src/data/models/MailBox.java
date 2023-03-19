@@ -1,5 +1,6 @@
 package data.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MailBox {
@@ -8,9 +9,9 @@ public class MailBox {
 
     private String userName;
 
-    private List<Mail> inbox;
+    private static List<Mail> inbox = new ArrayList<>();
 
-    private List<Mail> outbox;
+    private static List<Mail> outbox= new ArrayList<>();
 
     public int getId() {
         return id;
@@ -28,21 +29,19 @@ public class MailBox {
         this.userName = userName;
     }
 
+    public void setInbox(Mail mail) {
+        MailBox.inbox.add(mail);
+    }
+
     public List<Mail> getInbox() {
         return inbox;
     }
 
-    public void setInbox(List<Mail> inbox) {
-        this.inbox = inbox;
-    }
 
     public List<Mail> getOutbox() {
         return outbox;
     }
 
-    public void setOutbox(List<Mail> outbox) {
-        this.outbox = outbox;
-    }
 
     @Override
     public String toString() {

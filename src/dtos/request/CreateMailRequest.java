@@ -7,8 +7,6 @@ import java.time.format.DateTimeFormatter;
 
 public class CreateMailRequest extends Mail {
 
-    private int id;
-
     private String sender;
 
     private String recipient;
@@ -19,13 +17,6 @@ public class CreateMailRequest extends Mail {
     private LocalDate date = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getSender() {
         return sender;

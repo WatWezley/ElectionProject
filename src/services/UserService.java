@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
     User register(CreateUserRequest userRequest);
 
-    String isLoginCorrect(String userName, String password);
+    User isLoginCorrect(String userName, String password);
 
     UserResponse findByUserName(String userName);
 

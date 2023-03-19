@@ -44,7 +44,7 @@ public class MailBoxRepoImpl implements MailBoxRepo{
     @Override
     public MailBox findByMailName(String userName) {
         for(MailBox mailBox2: mailBoxes){
-            if(mailBox2.getMailBoxName().equalsIgnoreCase(userName)){
+            if(mailBox2.getUserName().equalsIgnoreCase(userName)){
               return mailBox2;
             }
         }

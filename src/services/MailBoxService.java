@@ -5,6 +5,7 @@ import data.models.MailBox;
 import dtos.request.CreateMailBoxRequest;
 import dtos.request.CreateMailRequest;
 import dtos.response.MailBoxResponse;
+import dtos.response.MailResponse;
 
 import java.util.List;
 
@@ -12,18 +13,24 @@ public interface MailBoxService {
 
     MailBox createMailBox(CreateMailBoxRequest inboxRequest);
 
-    Mail sendMails(CreateMailRequest mailRequest);
+    String sendMails(CreateMailRequest mailRequest);
 
-    MailBoxResponse findMailBoxByMailName(String mailName);
+    MailBoxResponse findMailBoxByMailName(String userName);
 
-    MailBox saveMailsInInbox(CreateMailRequest mailRequest);
+    List<MailResponse>  findInbox(String userName,MailResponse response);
 
-    MailBox saveMailsInOutbox(CreateMailRequest mailRequest);
+    List<MailResponse>  findOutbox(String userName, MailResponse response);
 
-    List<Mail>  findInbox(String mailBoxName);
+    List<MailResponse> findSender(String userName, String sender, MailResponse mailResponse);
 
-    List<Mail>  findOutbox(String mailBoxName);
+    List <MailResponse> findRecipient(String userName, String recipient, MailResponse mailResponse);
+    long inboxCount(String userName);
+
+    long outboxCount(String userName);
     String delete(int id);
 
-    long count();
+    String deleteBySender(String userName,String sender);
+
+    String deleteByRecipient(String userName, String recipient);
+
 }

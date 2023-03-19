@@ -20,8 +20,6 @@ class MailBoxRepoImplTest {
     void setUp(){
         mailBox=new MailBox();
         mailBox.setUserName("ugokarl@regnos.com");
-        mailBox.setInbox(new ArrayList<>());
-        mailBox.setOutbox(new ArrayList<>());
         mailBoxRepoImpl= new MailBoxRepoImpl();
 
     }
@@ -45,8 +43,6 @@ class MailBoxRepoImplTest {
         MailBox mailBox1= mailBoxRepoImpl.save(mailBox);
         mailBox=new MailBox();
         mailBox.setUserName("ugokarl@regnos.com");
-        mailBox.setInbox(new ArrayList<>());
-        mailBox.setOutbox(new ArrayList<>());
         MailBox mailBox2= mailBoxRepoImpl.save(mailBox);
         List<MailBox> mailBoxList = List.of(new MailBox[]{mailBox1, mailBox2});
         assertEquals(2,mailBoxRepoImpl.count());
@@ -58,13 +54,9 @@ class MailBoxRepoImplTest {
         MailBox mailBox1= mailBoxRepoImpl.save(mailBox);
         mailBox=new MailBox();
         mailBox.setUserName("ugokarl@regnos.com");
-        mailBox.setInbox(new ArrayList<>());
-        mailBox.setOutbox(new ArrayList<>());
         MailBox mailBox2= mailBoxRepoImpl.save(mailBox);
         mailBox=new MailBox();
         mailBox.setUserName("favchi@regnos.com");
-        mailBox.setInbox(new ArrayList<>());
-        mailBox.setOutbox(new ArrayList<>());
         MailBox mailBox3= mailBoxRepoImpl.save(mailBox);
         List<MailBox> mailBoxList = List.of(new MailBox[]{mailBox1, mailBox2, mailBox3});
         assertEquals(mailBoxList,mailBoxRepoImpl.findAll());
@@ -79,13 +71,9 @@ class MailBoxRepoImplTest {
         MailBox mailBox1= mailBoxRepoImpl.save(mailBox);
         mailBox = new MailBox();
         mailBox.setUserName("ugokarl@regnos.com");
-        mailBox.setInbox(new ArrayList<>());
-        mailBox.setOutbox(new ArrayList<>());
         MailBox mailBox2= mailBoxRepoImpl.save(mailBox);
         mailBox = new MailBox();
         mailBox.setUserName("favchi@regnos.com");
-        mailBox.setInbox(new ArrayList<>());
-        mailBox.setOutbox(new ArrayList<>());
         MailBox mailBox3= mailBoxRepoImpl.save(mailBox);
         List<MailBox> mailBoxList = List.of(new MailBox[]{mailBox1, mailBox2, mailBox3});
         assertEquals(mailBoxList,mailBoxRepoImpl.findAll());

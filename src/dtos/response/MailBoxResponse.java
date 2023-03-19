@@ -5,15 +5,15 @@ import data.models.MailBox;
 
 import java.util.ArrayList;
 
-public class MailBoxResponse extends MailBox {
+public class MailBoxResponse  {
 
     private int id ;
 
     private String userName;
 
-    private  ArrayList<Mail> inBoxMails;
+    private  ArrayList<Mail> inbox;
 
-    private  ArrayList<Mail> outBoxMails;
+    private  ArrayList<Mail> outbox;
 
     public int getId() {
         return id;
@@ -31,20 +31,20 @@ public class MailBoxResponse extends MailBox {
         this.userName = userName;
     }
 
-    public ArrayList<Mail> getInBoxMails() {
-        return inBoxMails;
+    public ArrayList<Mail> getInbox() {
+        return inbox;
     }
 
-    public void setInBoxMails(ArrayList<Mail> inBoxMails) {
-        this.inBoxMails = inBoxMails;
+    public void setInbox(ArrayList<Mail> inbox) {
+        this.inbox = inbox;
     }
 
-    public ArrayList<Mail> getOutBoxMails() {
-        return outBoxMails;
+    public ArrayList<Mail> getOutbox() {
+        return outbox;
     }
 
-    public void setOutBoxMails(ArrayList<Mail> outBoxMails) {
-        this.outBoxMails = outBoxMails;
+    public void setOutbox(ArrayList<Mail> outbox) {
+        this.outbox = outbox;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class MailBoxResponse extends MailBox {
                 UserName : %s
                 InboxMails : %s
                 OutboxMails : %s
-                """,getId(),getUserName(),getInBoxMails(),getOutBoxMails());
+                """,getId(),getUserName(),getInbox(),getOutbox());
 
     }
 }

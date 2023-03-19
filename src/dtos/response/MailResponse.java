@@ -69,13 +69,12 @@ public class MailResponse {
     @Override
     public String toString() {
         return String.format("""
-                Id : %s
                 Date : %s
                 Sender : %s
                 Recipient : %s
                 Title : %s
                 Body: %s
-                """,getId(),getDate(),getSender(),getRecipient(),getTitle(),getBody());
+                """,getDate(),getSender(),getRecipient(),getTitle(),getBody());
 
     }
 }

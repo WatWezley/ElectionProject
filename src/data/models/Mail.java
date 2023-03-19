@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Mail {
 
-    private int id;
     private String sender;
 
     private String recipient;
@@ -16,13 +15,7 @@ public class Mail {
     private LocalDate date = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getSender() {
         return sender;
@@ -67,13 +60,12 @@ public class Mail {
     @Override
         public String toString() {
             return String.format("""
-                        Id: %s
                         Date: %s
                         Sender: %s
                         Recipient: %s
                         Title : %s
                         Body: %s
                         """,
-                        getId(), getDate(), getSender(), getRecipient(), getTitle(), getBody()) ;
+                         getDate(), getSender(), getRecipient(), getTitle(), getBody()) ;
     }
 }
